@@ -60,12 +60,18 @@ export default function Header() {
       onNotification: () => refreshNotifs()
     });
 
+    const poll = window.setInterval(() => {
+      refreshCart();
+      refreshNotifs();
+    }, 10000);
+
     window.addEventListener(EVENTS.cartUpdated, refreshCart);
     window.addEventListener(EVENTS.notificationsUpdated, refreshNotifs);
     return () => {
       window.removeEventListener(EVENTS.cartUpdated, refreshCart);
       window.removeEventListener(EVENTS.notificationsUpdated, refreshNotifs);
       disconnect();
+      window.clearInterval(poll);
     };
   }, [user]);
 

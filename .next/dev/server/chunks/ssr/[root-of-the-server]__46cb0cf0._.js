@@ -407,7 +407,7 @@ async function removeFromCart(token, itemId) {
     return cart;
 }
 async function checkout(token, couponCode) {
-    return apiFetch('/checkout', {
+    const result = await apiFetch('/checkout', {
         method: 'POST',
         headers: {
             Authorization: `Bearer ${token}`
@@ -416,6 +416,8 @@ async function checkout(token, couponCode) {
             coupon_code: couponCode
         })
     });
+    (0, __TURBOPACK__imported__module__$5b$project$5d2f$lib$2f$events$2e$ts__$5b$app$2d$rsc$5d$__$28$ecmascript$29$__["emitCartUpdated"])();
+    return result;
 }
 async function getOrders(token) {
     return apiFetch('/orders', {

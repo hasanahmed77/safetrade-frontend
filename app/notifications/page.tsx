@@ -5,6 +5,7 @@ import AuthGate from '@/components/AuthGate';
 import { getNotifications, markNotificationRead } from '@/lib/api';
 import { getToken } from '@/lib/auth';
 import { connectRealtime } from '@/lib/realtime';
+import { EVENTS } from '@/lib/events';
 import { useAuth } from '@/lib/useAuth';
 import type { NotificationItem } from '@/lib/types';
 
@@ -33,7 +34,13 @@ export default function NotificationsPage() {
       userId: user.id,
       onNotification: refresh
     });
-    return () => disconnect();
+    const poll = window.setInterval(refresh, 10000);
+    window.addEventListener(EVENTS.notificationsUpdated, refresh);
+    return () => {
+      disconnect();
+      window.clearInterval(poll);
+      window.removeEventListener(EVENTS.notificationsUpdated, refresh);
+    };
   }, [user]);
 
   const handleRead = async (item: NotificationItem) => {
