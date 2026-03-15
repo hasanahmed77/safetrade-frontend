@@ -1,0 +1,19 @@
+export const categories = [
+  'All',
+  'Electronics',
+  'Furniture',
+  'Accessories',
+  'Fashion',
+  'Clothing',
+  'Shoes',
+  'Bags',
+  'Books',
+  'Sports',
+  'Home',
+  'Games',
+  'Collectibles',
+  'Music',
+  'Tools',
+  'Automotive',
+  'Beauty'
+];

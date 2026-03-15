@@ -1,0 +1,6 @@
+{
+  "version": 3,
+  "sources": [],
+  "sections": [
+    {"offset": {"line": 4, "column": 0}, "map": {"version":3,"sources":["file:///Users/mustakimahmedhasan/Workspace/Programming/projects/CSE311/frontend/components/AddToCartQuick.tsx"],"sourcesContent":["'use client';\n\nimport { useState } from 'react';\nimport { addToCart } from '@/lib/api';\nimport { getToken } from '@/lib/auth';\n\nexport default function AddToCartQuick({ productId }: { productId: number }) {\n  const [status, setStatus] = useState<string | null>(null);\n\n  const handleAdd = async () => {\n    const token = getToken();\n    if (!token) {\n      setStatus('Sign in first.');\n      return;\n    }\n    try {\n      await addToCart(token, productId, 1);\n      setStatus('Added.');\n    } catch {\n      setStatus('Failed.');\n    }\n  };\n\n  return (\n    <button className=\"btn-primary\" onClick={handleAdd}>\n      Add\n    </button>\n  );\n}\n"],"names":[],"mappings":";;;;;AAEA;AACA;AACA;;;AAJA;;;;AAMe,SAAS,eAAe,EAAE,SAAS,EAAyB;;IACzE,MAAM,CAAC,QAAQ,UAAU,GAAG,IAAA,yKAAQ,EAAgB;IAEpD,MAAM,YAAY;QAChB,MAAM,QAAQ,IAAA,0HAAQ;QACtB,IAAI,CAAC,OAAO;YACV,UAAU;YACV;QACF;QACA,IAAI;YACF,MAAM,IAAA,0HAAS,EAAC,OAAO,WAAW;YAClC,UAAU;QACZ,EAAE,OAAM;YACN,UAAU;QACZ;IACF;IAEA,qBACE,6LAAC;QAAO,WAAU;QAAc,SAAS;kBAAW;;;;;;AAIxD;GAtBwB;KAAA","debugId":null}}]
+}

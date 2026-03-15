@@ -1,0 +1,6 @@
+{
+  "version": 3,
+  "sources": [],
+  "sections": [
+    {"offset": {"line": 4, "column": 0}, "map": {"version":3,"sources":["file:///Users/mustakimahmedhasan/Workspace/Programming/projects/CSE311/frontend/components/AuthGate.tsx"],"sourcesContent":["'use client';\n\nimport { useAuth } from '@/lib/useAuth';\n\ntype Props = {\n  role?: 'buyer' | 'seller' | 'admin';\n  children: React.ReactNode;\n};\n\nexport default function AuthGate({ role, children }: Props) {\n  const { user, loading } = useAuth();\n\n  if (loading) {\n    return <div className=\"card\">Checking access…</div>;\n  }\n\n  if (!user) {\n    return (\n      <div className=\"card\">\n        You must be signed in to view this page.\n      </div>\n    );\n  }\n\n  if (role && user.role !== role) {\n    return (\n      <div className=\"card\">\n        Access denied. This page is for {role} accounts only.\n      </div>\n    );\n  }\n\n  return <>{children}</>;\n}\n"],"names":[],"mappings":";;;;;AAEA;;;AAFA;;AASe,SAAS,SAAS,EAAE,IAAI,EAAE,QAAQ,EAAS;;IACxD,MAAM,EAAE,IAAI,EAAE,OAAO,EAAE,GAAG,IAAA,4HAAO;IAEjC,IAAI,SAAS;QACX,qBAAO,6LAAC;YAAI,WAAU;sBAAO;;;;;;IAC/B;IAEA,IAAI,CAAC,MAAM;QACT,qBACE,6LAAC;YAAI,WAAU;sBAAO;;;;;;IAI1B;IAEA,IAAI,QAAQ,KAAK,IAAI,KAAK,MAAM;QAC9B,qBACE,6LAAC;YAAI,WAAU;;gBAAO;gBACa;gBAAK;;;;;;;IAG5C;IAEA,qBAAO;kBAAG;;AACZ;GAxBwB;;QACI,4HAAO;;;KADX","debugId":null}}]
+}
